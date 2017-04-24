@@ -30,6 +30,8 @@ public class Board extends JFrame {
 					c.gridy = j;
 					c.ipadx = 50;
 					c.ipady = 50;
+					c.weightx = 0.3;
+					c.weighty = 0.3;
 					masterPanel.add(button, c);
 				}
 				else {
@@ -41,6 +43,8 @@ public class Board extends JFrame {
 						c.gridy = j;
 						c.ipadx = 50;
 						c.ipady = 50;
+						c.weightx = 0.3;
+						c.weighty = 0.3;
 						masterPanel.add(button, c);
 					}
 				}
