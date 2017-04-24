@@ -1,0 +1,15 @@
+import java.awt.Graphics;
+import javax.swing.JButton;
+
+public class GameSquareButton extends JButton {
+
+    public void paintComponent(Graphics g) {
+       super.paintComponent(g);
+       g.fillRect(0, 0, 20, 20);
+    }
+    
+    public GameSquareButton(String caption){
+    	super(caption);
+    }
+}
+
