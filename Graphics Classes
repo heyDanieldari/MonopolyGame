@@ -1,0 +1,160 @@
+/// Gametile
+import java.awt.*;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+public class GameTile extends JPanel {
+	
+
+	@Override
+	protected void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
+		try {
+			///Image img = ImageIO.read(new File("images/leicester-square_thumb.png"));
+			///g.drawImage(img, 0, 0, null);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+
+	}
+
+}
+
+/// Corner Tile
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.Border;
+
+
+public class CornerTile extends JPanel {
+	
+	private final int width = 95;
+	public CornerTile() {
+		this.setSize(new Dimension(width,width));
+		this.setPreferredSize(new Dimension(width,width));
+		this.setMinimumSize(new Dimension(width,width));
+		JLabel label = new JLabel("Corner");
+		Border blackline = BorderFactory.createLineBorder(Color.black);
+		this.setBorder(blackline);
+		this.add(label, BorderLayout.PAGE_START);
+		///this.setBackground(Color.WHITE);
+		this.add(label);
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
+		try {
+			/// Image img = ImageIO.read(new
+			/// File("images/leicester-square_thumb.png"));
+			/// g.drawImage(img, 0, 0, null);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	}
+}
+
+/// Property TIle
+import java.awt.*;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+
+public class PropertyTile extends JPanel{
+	private final int width = 95;
+	private final int height = 75;
+	private int i;
+	private int j;
+	public PropertyTile(int i, int j) {
+		this.i = i;
+		this.j = j;
+		this.setLayout(new BorderLayout());
+		if ((i == 0 || i == 10)) {
+			this.setSize(new Dimension(width,height));
+			this.setPreferredSize(new Dimension(width,height));
+			this.setMinimumSize(new Dimension(width,height));
+		}
+			else if ((j == 0 || j == 10)) {
+				this.setSize(new Dimension(height,width));
+				this.setPreferredSize(new Dimension(height,width));
+				this.setMinimumSize(new Dimension(height,width));	
+			}
+		JLabel label = new JLabel("Property");
+		JLabel label2 = new JLabel("$100");
+		label.setHorizontalAlignment(JLabel.CENTER);
+		label2.setHorizontalAlignment(JLabel.CENTER);
+		///this.setBackground(Color.RED);
+	
+		Border blackline = BorderFactory.createLineBorder(Color.black);
+		this.setBorder(blackline);
+	if (i == 0 || i == 10) {
+			this.add(label, BorderLayout.PAGE_START);
+			this.add(label2, BorderLayout.PAGE_END);
+		}
+		else if (i > 0 && j == 0) {
+			this.add(label, BorderLayout.PAGE_START);
+			this.add(label2, BorderLayout.CENTER);
+		}
+		else {
+			this.add(label, BorderLayout.CENTER);
+			this.add(label2, BorderLayout.PAGE_END);
+		}
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		try {
+			/// Image img = ImageIO.read(new
+			/// File("images/leicester-square_thumb.png"));
+			/// g.drawImage(img, 0, 0, null);
+			Graphics2D g2 = (Graphics2D)g;
+			if ((i == 0 && j == 1) || (i == 0 && j == 2) || (i == 0 && j == 4)) {
+				g2.setColor(Color.ORANGE);
+				g2.fillRect((width-15), 0, 15, height);
+			}
+			if ((i == 0 && j == 6) || (i == 0 && j == 7) || (i == 0 && j == 9)) {
+				g2.setColor(Color.MAGENTA);
+				g2.fillRect((width-15), 0, 15, height);
+			}
+			if ((i == 10 && j == 1) || (i == 10 && j == 2) || (i == 10 && j == 4)) {
+				g2.setColor(Color.GREEN);
+				g2.fillRect(0, 0, 15, height);
+				}
+			if ((i == 6 && j == 0) || (i == 7 && j == 0) || (i == 9 && j == 0)) {
+				g2.setColor(Color.YELLOW);
+				g2.fillRect(0, (width-15), height, 15);
+				}
+			if ((i == 1 && j == 0) || (i == 3 && j == 0) || (i == 4 && j == 0)) {
+				g2.setColor(Color.RED);
+				g2.fillRect(0, (width-15), height, 15);
+				}
+			if ((i == 1 && j == 10) || (i == 2 && j == 10) || (i == 4 && j == 10)) {
+				g2.setColor(Color.CYAN);
+				g2.fillRect(0, 0, width, 15);
+				}
+			if ((i == 7 && j == 10) || (i == 9 && j == 10)) {
+				g2.setColor(Color.PINK);
+				g2.fillRect(0, 0, width, 15);
+				}
+			
+			if ((i == 10 && j == 9) || (i == 10 && j == 7)) {
+				g2.setColor(Color.BLUE);
+				g2.fillRect(0, 0, 15, height);
+				}
+
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	}
+}
