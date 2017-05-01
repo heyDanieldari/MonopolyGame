@@ -12,7 +12,7 @@ public class Board extends JFrame {
 
 		gameBoard = new Board();
 		gameBoard.setTitle("Monopoly");
-		gameBoard.setSize(1300,1300);
+		gameBoard.setBounds(100, 100, 560, 560);
 		gameBoard.setVisible(true);
 		
 	}
@@ -20,52 +20,40 @@ public class Board extends JFrame {
 	public Board() {
 		masterPanel = new JPanel();
 		masterPanel.setLayout(new GridBagLayout());
-		for (int i = 0; i < 10; i++){
-			for (int j = 0; j < 10;j++){
-				if (i == 0 || i == 9){
-					JButton button = new JButton(i + "-" + j);
-					button.setSize(new Dimension(50,50));
+		for (int i = 0; i < 11; i++){
+			for (int j = 0; j < 11;j++){
+				if ((i == 0 && j == 0) || (i == 0 && j == 10) || (i == 10 && j == 0) || (i == 10 && j == 10)) {
+					CornerTile corner = new CornerTile();
 					GridBagConstraints c = new GridBagConstraints();
 					c.gridx = i;
 					c.gridy = j;
-					c.ipadx = 50;
-					c.ipady = 50;
-					c.weightx = 0.3;
-					c.weighty = 0.3;
-					masterPanel.add(button, c);
+					masterPanel.add(corner, c);
 				}
-				else {
-					if (j == 0 || j == 9) {
-						JButton button = new JButton(i + "-" + j);
-						button.setSize(new Dimension(50,50));
-						GridBagConstraints c = new GridBagConstraints();
-						c.gridx = i;
-						c.gridy = j;
-						c.ipadx = 50;
-						c.ipady = 50;
-						c.weightx = 0.3;
-						c.weighty = 0.3;
-						masterPanel.add(button, c);
-					}
+				if ((i == 0 || i == 10)) {
+					PropertyTile prop = new PropertyTile(i,j);
+					GridBagConstraints c = new GridBagConstraints();
+					c.gridx = i;
+					c.gridy = j;
+					masterPanel.add(prop, c);
+				}
+				if ((j == 0 || j == 10)) {
+					PropertyTile prop = new PropertyTile(i,j);
+					GridBagConstraints c = new GridBagConstraints();
+					c.gridx = i;
+					c.gridy = j;
+					masterPanel.add(prop, c);
 				}
 			}
 		}
-		GameSquareButton middleButton = new GameSquareButton ("Monopoly");
-		try {
-			 Image img = ImageIO.read(new File("images/leicester-square_thumb.png"));
-		    middleButton.setIcon(new ImageIcon(img));
-		  } catch (Exception ex) {
-		    System.out.println(ex);
-		  }
-		middleButton.setPreferredSize(new Dimension(350,250));
+		GameTile middlelabel = new GameTile();
+		middlelabel.setBackground(Color.WHITE);
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 1;
 		c.gridy = 1;
-		c.gridheight = 8;
-		c.gridwidth = 8;
-		c.ipadx = 450;
-		c.ipady = 350;
-		masterPanel.add(middleButton,c);
+		c.gridheight = 9;
+		c.gridwidth = 9;
+		c.fill = GridBagConstraints.BOTH;
+		masterPanel.add(middlelabel,c);
 		this.add(masterPanel);
 		
 	}
