@@ -1,0 +1,39 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.Border;
+
+
+public class CornerTile extends JPanel {
+	
+	private final int width = 95;
+	public CornerTile() {
+		this.setSize(new Dimension(width,width));
+		this.setPreferredSize(new Dimension(width,width));
+		this.setMinimumSize(new Dimension(width,width));
+		JLabel label = new JLabel("Corner");
+		Border blackline = BorderFactory.createLineBorder(Color.black);
+		this.setBorder(blackline);
+		this.add(label, BorderLayout.PAGE_START);
+		///this.setBackground(Color.WHITE);
+		this.add(label);
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
+		try {
+			/// Image img = ImageIO.read(new
+			/// File("images/leicester-square_thumb.png"));
+			/// g.drawImage(img, 0, 0, null);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	}
+}
