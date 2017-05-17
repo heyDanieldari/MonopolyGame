@@ -1,0 +1,23 @@
+import java.awt.*;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+public class GameTile extends JPanel {
+	
+
+	@Override
+	protected void paintComponent(Graphics g) {
+
+		super.paintComponent(g);
+		try {
+			///Image img = ImageIO.read(new File("images/leicester-square_thumb.png"));
+			///g.drawImage(img, 0, 0, null);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+
+	}
+
+}

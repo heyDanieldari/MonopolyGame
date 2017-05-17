@@ -1,0 +1,61 @@
+import java.awt.*;
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+public class Board extends JFrame {
+	private static Board gameBoard;
+	private JPanel masterPanel;
+
+	public static void main(String[] args) {
+
+		gameBoard = new Board();
+		gameBoard.setTitle("Monopoly");
+		gameBoard.setBounds(100, 100, 560, 560);
+		gameBoard.setVisible(true);
+		
+	}
+
+	public Board() {
+		masterPanel = new JPanel();
+		masterPanel.setLayout(new GridBagLayout());
+		for (int i = 0; i < 11; i++){
+			for (int j = 0; j < 11;j++){
+				if ((i == 0 && j == 0) || (i == 0 && j == 10) || (i == 10 && j == 0) || (i == 10 && j == 10)) {
+					CornerTile corner = new CornerTile();
+					GridBagConstraints c = new GridBagConstraints();
+					c.gridx = i;
+					c.gridy = j;
+					masterPanel.add(corner, c);
+				}
+				if ((i == 0 || i == 10)) {
+					PropertyTile prop = new PropertyTile(i,j);
+					GridBagConstraints c = new GridBagConstraints();
+					c.gridx = i;
+					c.gridy = j;
+					masterPanel.add(prop, c);
+				}
+				if ((j == 0 || j == 10)) {
+					PropertyTile prop = new PropertyTile(i,j);
+					GridBagConstraints c = new GridBagConstraints();
+					c.gridx = i;
+					c.gridy = j;
+					masterPanel.add(prop, c);
+				}
+			}
+		}
+		GameTile middlelabel = new GameTile();
+		middlelabel.setBackground(Color.WHITE);
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = 1;
+		c.gridheight = 9;
+		c.gridwidth = 9;
+		c.fill = GridBagConstraints.BOTH;
+		masterPanel.add(middlelabel,c);
+		this.add(masterPanel);
+		
+	}
+
+}
